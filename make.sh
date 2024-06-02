@@ -8,6 +8,6 @@ gcc -o main ./main.o ./my_math.o -lm
 gcc count_mistakes.c -o count_mistakes
 ./count_mistakes
 
-echo quality_metric.txt
+cat quality_metric.txt
 
 rm *.o
