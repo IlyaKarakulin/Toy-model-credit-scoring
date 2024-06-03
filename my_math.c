@@ -1,5 +1,6 @@
 #include <math.h>
 
+// функция нахождения скалярного произведения двух векторов
 double scalar_pr(double *v1, double *v2, int count_features)
 {
     double sum = 0;
@@ -10,6 +11,7 @@ double scalar_pr(double *v1, double *v2, int count_features)
     return sum;
 }
 
+// вычисление нормы вектора
 double norm(double *v, int count_features)
 {
     double sum = 0;
@@ -20,6 +22,7 @@ double norm(double *v, int count_features)
     return sqrt(sum);
 }
 
+// разложение экспоненты в ряд Тейлора
 double taylor_exp(double x)
 {
     double sum = 1.0;
@@ -34,6 +37,7 @@ double taylor_exp(double x)
     return sum;
 }
 
+// Функция сигмоиды. По ней определяется вероятность дефолта
 double sigmoid(double x)
 {
     return 1.0 / (1.0 + taylor_exp(-x));
@@ -44,33 +48,4 @@ double predict(double *x, double *W, int count_features)
 {
     double res = scalar_pr(W, x, count_features);
     return sigmoid(res);
-}
-
-int strLen(char *str)
-{
-    int len = 0;
-    while (*str++ != 0)
-    {
-        ++len;
-    }
-    return len - 1;
-}
-
-int toInt(char *str)
-{
-    int res = 0, base = 1, len = 0, flag = 0;
-    len = strLen(str);
-
-    if (*str == '-')
-    {
-        flag = 1;
-    }
-
-    while (len >= flag)
-    {
-        res += (str[len--] - 48) * base;
-        base *= 10;
-    }
-
-    return flag == 1 ? -1 * res : res;
 }
